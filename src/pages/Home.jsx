@@ -35,7 +35,7 @@ export default function Home(){
                         <p className="text-center">Market Cap</p>
                     </div>
                     {
-                        displayCoin.slice(0, 10).map((item, index)=>(
+                        displayCoin.slice(0, 5).map((item, index)=>(
                             <div className='grid grid-cols-5 p-5' key={index}>
                                 <p>{item.market_cap_rank}</p>
                                 <div className='text-left flex gap-2'>
@@ -43,7 +43,9 @@ export default function Home(){
                                     <p>{item.name + "-" + item.symbol}</p>
                                 </div>
                                 <p className='text-center'>{currency.symbol} {item.current_price}</p>
-                                <p className='text-center'>{Math.floor(item.price_change_percentage_24h*100)/100}%</p>
+                                <p className='text-center'
+                                style={{ color: item.price_change_percentage_24h > 0 ? 'green' : 'red' }}>
+                                    {Math.floor(item.price_change_percentage_24h*100)/100}%</p>
                                 <p className='text-center'>{currency.symbol} {item.market_cap.toLocaleString()}</p>
                             </div>
                         ))
