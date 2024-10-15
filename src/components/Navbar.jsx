@@ -1,6 +1,26 @@
-import { RiAccountCircleFill } from "react-icons/ri";
+import { useContext } from "react";
+import { CoinContext } from "../context/CoinContext";
 
 export default function Navbar(){
+    const {setCurrency} = useContext(CoinContext)
+
+    const currencyHandler = (e)=>{
+        switch (e.target.value){
+            case "usd" : {
+                setCurrency({name:"usd", symbol: "$"})
+                break;
+            }
+            case "eur" : {
+                setCurrency({name:"eur", symbol: "€"})
+                break;
+            }
+            default : {
+                setCurrency({name:"usd", symbol: "$"})
+                break;
+            }
+        }
+    }
+
     return (
         <div className="navbar bg-base-300">
             <div className="navbar-start">
@@ -38,7 +58,7 @@ export default function Navbar(){
                 <a className="btn btn-ghost text-xl xl:inline-flex hidden">LOGO</a>
             </div>
             <div className="navbar-end me-6 gap-8">
-                <select className="rounded-md">
+                <select onChange={currencyHandler} className="rounded-md">
                     <option value="usd">USD</option>
                     <option value="eur">EUR</option>
                 </select>                
