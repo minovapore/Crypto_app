@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Chart from "react-google-charts";
-import { IoColorFilterOutline } from "react-icons/io5";
+import '../style/LineChart.css';
 
 export default function LineChart({historicalData}){
     const [data, setData] = useState([["Date", "Prices"]])
@@ -16,6 +16,19 @@ export default function LineChart({historicalData}){
     }, [historicalData])
 
     const options = {
+        hAxis: {
+            textStyle: {
+              color: '#ffffff',  // Colore del testo per l'asse X
+            },
+        },
+        vAxis: {
+            textStyle: {
+              color: '#ffffff',  // Colore del testo per l'asse Y
+            },
+        },
+        legend:{
+            textStyle: {color:'#ffffff'}
+        },
         colors: ['#00ffb3'],
         backgroundColor: 'transparent',
         chartArea:{
@@ -26,6 +39,7 @@ export default function LineChart({historicalData}){
     }
 
     return (
+        <div className="glass-container p-10 w-10/12 h-[500px] mx-auto rounded-2xl">
         <Chart
             options={options}
             chartType="LineChart"
@@ -33,5 +47,6 @@ export default function LineChart({historicalData}){
             height="100%"
             legendToggle
         />
+        </div>
     );
 }

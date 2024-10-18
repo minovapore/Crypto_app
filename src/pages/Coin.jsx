@@ -3,6 +3,9 @@ import { useParams } from "react-router-dom";
 import { CoinContext } from "../context/CoinContext";
 import '../style/Coin.css'
 import LineChart from "../components/LineChart";
+import { FaArrowDown } from "react-icons/fa";
+import { FaArrowUp } from "react-icons/fa";
+
 
 export default function Coin(){
     const {coinId} =useParams();
@@ -42,33 +45,39 @@ export default function Coin(){
     if(coinData && historicalData){
         return(
             <div>
-                <div>
-                    <img src={coinData.image.large} alt="" />
-                    <p><b>{coinData.name} ({coinData.symbol.toUpperCase()})</b></p>
+                <div className="flex items-center justify-center gap-5 my-5">
+                    <img src={coinData.image.large} alt="" className="w-[150px]"/>
+                    <p className="text-white text-4xl"><b>{coinData.name} ({coinData.symbol.toUpperCase()})</b></p>
                 </div>
                 <div>
                     <LineChart historicalData={historicalData}/>
                 </div>
-                <div>
+                <div className="my-5 text-xl grid grid-cols-5 text-white text-center">
                     <ul>
-                        <li>Crypto Market Rank</li>
-                        <li>{coinData.market_cap_rank}</li>
+                        <li className="font-bold">Crypto Market Rank</li>
+                        <li className="font-semibold">#{coinData.market_cap_rank}</li>
                     </ul>
                     <ul>
-                        <li>Current Price</li>
-                        <li>{currency.symbol} {coinData.market_data.current_price[currency.name].toLocaleString()}</li>
+                        <li className="font-bold">Current Price</li>
+                        <li className="font-semibold">{currency.symbol} {coinData.market_data.current_price[currency.name].toLocaleString()}</li>
                     </ul>
                     <ul>
-                        <li>Market Cap</li>
-                        <li>{currency.symbol} {coinData.market_data.market_cap[currency.name].toLocaleString()}</li>
+                        <li className="font-bold">Market Cap</li>
+                        <li className="font-semibold">{currency.symbol} {coinData.market_data.market_cap[currency.name].toLocaleString()}</li>
                     </ul>
                     <ul>
-                        <li>24 Hour High</li>
-                        <li>{currency.symbol} {coinData.market_data.high_24h[currency.name].toLocaleString()}</li>
+                        <li className="font-bold">24 Hour High</li>
+                        <div className="flex justify-center items-center gap-2">
+                            <li className="font-semibold">{currency.symbol} {coinData.market_data.high_24h[currency.name].toLocaleString()}</li>
+                            <span className="text-green-500"><FaArrowUp /></span>
+                        </div>
                     </ul>
                     <ul>
-                        <li>24 Hour Low</li>
-                        <li>{currency.symbol} {coinData.market_data.low_24h[currency.name].toLocaleString()}</li>
+                        <li className="font-bold">24 Hour Low</li>
+                        <div className="flex justify-center items-center gap-2">
+                            <li className="font-semibold">{currency.symbol} {coinData.market_data.low_24h[currency.name].toLocaleString()}</li>
+                            <span className="text-red-500"><FaArrowDown /></span>
+                        </div>
                     </ul>
                 </div>
             </div>
