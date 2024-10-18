@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import '../style/Home.css';
 import { IoSearch } from "react-icons/io5";
 import { CoinContext } from '../context/CoinContext';
+import { Link } from 'react-router-dom';
 
 export default function Home(){
     const {allCoin, currency} = useContext(CoinContext);
@@ -55,7 +56,7 @@ export default function Home(){
                     </div>
                     {
                         displayCoin.slice(0, 10).map((item, index)=>(
-                            <div className='grid xl:grid-cols-5 md:grid-cols-5 grid-cols-4 p-5' key={index}>
+                            <Link to={`/coin/${item.id}`} className='grid xl:grid-cols-5 md:grid-cols-5 grid-cols-4 p-5' key={index}>
                                 <p>{item.market_cap_rank}</p>
                                 <div className='text-left flex gap-2'>
                                     <img src={item.image} alt="" className='xl:w-8 xl:h-8 md:w-8 md:h-8 w-6 h-6 '/>
@@ -66,7 +67,7 @@ export default function Home(){
                                 style={{ color: item.price_change_percentage_24h > 0 ? 'green' : 'red' }}>
                                     {Math.floor(item.price_change_percentage_24h*100)/100}%</p>
                                 <p className='text-center xl:block md:block hidden'>{currency.symbol} {item.market_cap.toLocaleString()}</p>
-                            </div>
+                            </Link>
                         ))
                     }
                 </div>

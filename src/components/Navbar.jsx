@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { CoinContext } from "../context/CoinContext";
+import { Link } from "react-router-dom";
 
 export default function Navbar(){
     const {setCurrency} = useContext(CoinContext)
@@ -40,15 +41,17 @@ export default function Navbar(){
                         </svg>
                     </div>
                     <ul tabIndex={0} className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-                        <li><a>Home</a></li>
+                        <Link to={'/'}><li>Home</li></Link>
                         <li><a>Features</a></li>
                         <li><a>Pricing</a></li>
                         <li><a>Blog</a></li>
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-xl xl:hidden">LOGO</a>
+                <Link to={'/'}>
+                    <p className="btn btn-ghost text-xl xl:hidden">LOGO</p>
+                </Link>
                 <ul className="menu menu-horizontal px-1 hidden lg:flex">
-                    <li><a>Home</a></li>
+                    <Link to={'/'}><li>Home</li></Link>
                     <li><a>Features</a></li>
                     <li><a>Pricing</a></li>
                     <li><a>Blog</a></li>
