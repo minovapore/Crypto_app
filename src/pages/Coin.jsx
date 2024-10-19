@@ -52,7 +52,7 @@ export default function Coin(){
                 <div>
                     <LineChart historicalData={historicalData}/>
                 </div>
-                <div className="my-5 text-xl grid grid-cols-5 text-white text-center">
+                <div className="my-10 text-xl grid grid-cols-5 text-white text-center">
                     <ul>
                         <li className="font-bold">Crypto Market Rank</li>
                         <li className="font-semibold">#{coinData.market_cap_rank}</li>
@@ -80,6 +80,7 @@ export default function Coin(){
                         </div>
                     </ul>
                 </div>
+                <p className="text-white text-xl px-5 my-10">{coinData.description.en}</p>
             </div>
         );
     }else{

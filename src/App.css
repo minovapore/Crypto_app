@@ -2,3 +2,13 @@ body{
     background: radial-gradient(circle, #001f3f 50%, #1e3a8a 100%);
     background-attachment: fixed;
 }
+
+:root{
+    --det-color: #1e3a8a;
+    --sec-color: #00ffb3;
+}
+
+.bg-det{
+    background-color: var(--det-color);
+}
+
